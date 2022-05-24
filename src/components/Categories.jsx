@@ -7,6 +7,7 @@ function Categories () {
                 <li>ВАНЯ ПИДОР</li>
                 <li>ВАНЯ ПИДОР</li>
                 <li>ВАНЯ ПИДОР</li>
+                <li>ВАНЯ ПИДОР</li>
               </ul>
             </div>
     )
