@@ -7,13 +7,13 @@ function Header () {
           <div className="header__logo">
             <img width="38" src={PizzaLogo} alt="Pizza logo" />
             <div>
-              <h1>ВАНЯ ПИДОР</h1>
-              <p>ВАНЯ ПИДОР</p>
+              <h1>React Pizza</h1>
+              <p>самая вкусная питса во вселенной</p>
             </div>
           </div>
           <div className="header__cart">
             <a href="/cart.html" className="button button--cart">
-              <span>520 ₽</span>
+              <span>1520 ₸</span>
               <div className="button__delimiter"></div>
               <svg
                 width="18"
