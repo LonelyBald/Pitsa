@@ -5,7 +5,6 @@ function PizzaBlock ({title, price, imageUrl, sizes, types}) {
     const [activeSize, setActiveSize] = useState(0)  
     const typeNames =['тонкое', 'традиционное']
 
-
     return (
         <div className="pizza-block">
             <img
