@@ -1,11 +1,14 @@
+// @ts-ignore
 import PizzaLogo from '../assets/img/pizza-logo.svg';
 import { Link } from 'react-router-dom';
 import { Search } from './Search';
+// @ts-ignore
 import CartSVG from '../assets/img/cart.svg';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../redux/store';
 
+//TODO: fix svg types
 function Header() {
-  const { totalPrice, items } = useSelector(
+  const { totalPrice, items } = useAppSelector(
     (state) => state.cartSlice
   );
 

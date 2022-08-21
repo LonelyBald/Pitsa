@@ -14,7 +14,6 @@ import Skeleton from '../components/ContentLoader';
 import PizzaBlock from '../components/PizzaBlock';
 import { HeaderContext } from '../Context';
 import { Pagination } from '../components/Pagination';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   setCategoryId,
   setCurrentPage,
@@ -22,19 +21,23 @@ import {
 } from '../redux/slices/filterSlice';
 import { getPitsaListThunk } from '../redux/thunk/getPitsaListThunk';
 import { DataFetchError } from '../components/DataFetchError';
+import { useAppDispatch, useAppSelector } from '../redux/store';
 
-function Menu(callback, deps) {
+function Menu() {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { categoryId, sort, currentPage } = useSelector(
+  const { categoryId, sort, currentPage } = useAppSelector(
     (state) => state.filterSlice
   );
-  const { items, isLoading, isError } = useSelector(
+  const { items, isLoading, isError } = useAppSelector(
     (state) => state.menuSlice
   );
+
+  // @ts-ignore
+  //TODO: fix context types
   const { searchValue } = useContext(HeaderContext);
 
   const sortType = sort.sortProperty;
@@ -48,13 +51,21 @@ function Menu(callback, deps) {
   ));
   const skeletons = [...new Array(4)];
 
-  const onChangeCategory = (id) => {
+  const onChangeCategory = (id: number) => {
     dispatch(setCategoryId(id));
   };
 
   const fetchPizzas = useCallback(() => {
-    dispatch(getPitsaListThunk({ category, sortBy, order, search }));
-  }, [category, dispatch, order, search, sortBy]);
+    return dispatch(
+      getPitsaListThunk({
+        currentPage,
+        category,
+        sortBy,
+        order,
+        search,
+      })
+    );
+  }, [category, dispatch, order, search, sortBy, currentPage]);
 
   useEffect(() => {
     if (window.location.search) {
@@ -116,7 +127,8 @@ function Menu(callback, deps) {
           {isError ? <DataFetchError /> : ''}
         </div>
         <Pagination
-          onChangePage={(id) => dispatch(setCurrentPage(id))}
+          onChangePage={(id: number) => dispatch(setCurrentPage(id))}
+          totalPageCount={pizzas.length / 5}
         />
       </div>
     </div>
