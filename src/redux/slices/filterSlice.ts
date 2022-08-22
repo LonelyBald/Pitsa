@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { SORTLIST } from '../../constants';
+
 interface InitialStateType {
   categoryId: number;
   sort: { name: string; sortProperty: string };
@@ -7,7 +9,10 @@ interface InitialStateType {
 
 const initialState = {
   categoryId: 0,
-  sort: { name: 'популярности', sortProperty: 'rating' },
+  sort: {
+    name: SORTLIST[0].name,
+    sortProperty: SORTLIST[0].sortProperty,
+  },
   currentPage: 1,
 } as InitialStateType;
 

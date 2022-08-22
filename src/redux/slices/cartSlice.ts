@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { CartItemType } from '../../types/cartItemType';
+
 interface InitialStateType {
   totalPrice: number;
   items: Array<CartItemType>;
@@ -32,8 +33,6 @@ const cartSlice = createSlice({
       }, 0);
     },
 
-    //TODO: refactor minus item logic
-
     minusItem(state, action) {
       const deletePitsa = action.payload;
       const findItem = state.items.find(
@@ -60,7 +59,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addItem, removeItem, minusItem, clearItems } =
-  cartSlice.actions;
+export const { addItem, minusItem, clearItems } = cartSlice.actions;
 
 export default cartSlice.reducer;

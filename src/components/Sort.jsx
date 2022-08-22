@@ -1,18 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSort } from '../redux/slices/filterSlice';
-import { SortArrowSVG } from '../assets/svgs/SortArrowSVG';
+import { SortArrowSVG } from '../assets/svgs';
+import { SORTLIST } from '../constants';
 
-export const sortList = [
-  { name: 'популярности (DESC)', sortProperty: 'rating' },
-  { name: 'популярности (ASC)', sortProperty: 'rating' },
-  { name: 'цене (DESC)', sortProperty: 'price' },
-  { name: 'цене (ASC)', sortProperty: 'price' },
-  { name: 'алфавиту (DESC)', sortProperty: 'title' },
-  { name: 'алфавиту (ASC)', sortProperty: 'title' },
-];
-
-function Sort() {
+export function Sort() {
   const dispatch = useDispatch();
   const sort = useSelector((state) => state.filterSlice.sort);
   const sortRef = useRef();
@@ -43,10 +35,10 @@ function Sort() {
         <b>Сортировка по:</b>
         <span onClick={() => setOpen(!open)}>{sort.name}</span>
       </div>
-      {open ? (
+      {!open && (
         <div className="sort__popup">
           <ul>
-            {sortList.map((obj, index) => (
+            {SORTLIST.map((obj, index) => (
               <li
                 onClick={() => onClickListItem(obj)}
                 className={
@@ -61,11 +53,7 @@ function Sort() {
             ))}
           </ul>
         </div>
-      ) : (
-        ''
       )}
     </div>
   );
 }
-
-export default Sort;

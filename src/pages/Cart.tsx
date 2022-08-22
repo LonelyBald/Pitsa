@@ -1,21 +1,19 @@
 import React from 'react';
-import CartItem from '../components/CartItem';
+import { CartEmpty, CartItem } from '../components';
 import { clearItems } from '../redux/slices/cartSlice';
-import CartEmpty from '../components/CartEmpty';
-import { CartSVG } from '../assets/svgs/CartSVG';
-import { BinSVG } from '../assets/svgs/BinSVG';
-import { LeftArrowSVG } from '../assets/svgs/LeftArrowSVG';
+import { BinSVG, CartSVG, LeftArrowSVG } from '../assets/svgs';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/store';
 
-function Cart() {
+const CLEAN_CART_MESSAGE = 'Вы хотити очистить корзину?';
+
+export function Cart() {
   const dispatch = useAppDispatch();
   const { items, totalPrice } = useAppSelector(
     (state) => state.cartSlice
   );
-
   const onClickRemove = () => {
-    if (window.confirm('Вы хотити очистить корзину?')) {
+    if (window.confirm(CLEAN_CART_MESSAGE)) {
       dispatch(clearItems());
     }
   };
@@ -80,5 +78,3 @@ function Cart() {
     </div>
   );
 }
-
-export default Cart;

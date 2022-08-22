@@ -1,13 +1,10 @@
-// @ts-ignore
 import PizzaLogo from '../assets/img/pizza-logo.svg';
 import { Link } from 'react-router-dom';
 import { Search } from './Search';
-// @ts-ignore
-import CartSVG from '../assets/img/cart.svg';
 import { useAppSelector } from '../redux/store';
+import { CartSVG } from '../assets/svgs';
 
-//TODO: fix svg types
-function Header() {
+export function Header() {
   const { totalPrice, items } = useAppSelector(
     (state) => state.cartSlice
   );
@@ -32,7 +29,9 @@ function Header() {
             <Link to="/cart" className="button button--cart">
               <span>{totalPrice} ₸</span>
               <div className="button__delimiter" />
-              <img className="button--img" src={CartSVG} alt="cart" />
+              <div className="button--img">
+                <CartSVG />
+              </div>
               <span>{totalCount}</span>
             </Link>
           </nav>
@@ -41,5 +40,3 @@ function Header() {
     </div>
   );
 }
-
-export default Header;

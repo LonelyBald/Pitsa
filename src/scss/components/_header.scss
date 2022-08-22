@@ -20,6 +20,8 @@
 
   .button--img {
     margin-right: 5px;
+    display: flex;
+    margin-bottom: 3px;
   }
 
   &__logo {
@@ -32,7 +34,6 @@
     h1 {
       color: #181818;
       font-size: 24px;
-      letter-spacing: 1%;
       text-transform: uppercase;
       font-weight: 800;
     }

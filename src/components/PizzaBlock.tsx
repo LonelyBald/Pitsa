@@ -2,11 +2,11 @@ import React, { useMemo, useState } from 'react';
 import { addItem } from '../redux/slices/cartSlice';
 import { useAppDispatch, useAppSelector } from '../redux/store';
 import { PitsaType } from '../types/pitsaType';
-import { PlusSVG } from '../assets/svgs/PlusSVG';
+import { PlusSVG } from '../assets/svgs';
 
 const typeNames = ['тонкое', 'традиционное'];
 
-function PizzaBlock({
+export function PizzaBlock({
   id,
   title,
   price,
@@ -30,15 +30,16 @@ function PizzaBlock({
   }, [cartItems]);
 
   const onClickAdd = () => {
-    const item = {
-      id,
-      title,
-      price,
-      imageUrl,
-      type: typeNames[activeType],
-      size: sizes[activeSize],
-    };
-    dispatch(addItem(item));
+    dispatch(
+      addItem({
+        id,
+        title,
+        price,
+        imageUrl,
+        type: typeNames[activeType],
+        size: sizes[activeSize],
+      })
+    );
   };
 
   return (
@@ -48,7 +49,7 @@ function PizzaBlock({
         src={imageUrl}
         alt="Pizza"
       />
-      <h4 className="pizza-block__title">{title}</h4>
+      <h4 className="pizza-bl,ock__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
           {types.map((typeId) => (
@@ -87,5 +88,3 @@ function PizzaBlock({
     </div>
   );
 }
-
-export default PizzaBlock;

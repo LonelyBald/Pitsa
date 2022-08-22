@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Cart from './pages/Cart';
-import Menu from './pages/Menu';
-import EmptyCart from './pages/NotFound';
+import { App } from './App';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Cart, Menu, NotFound } from './pages';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 
@@ -18,7 +16,7 @@ if (documentRoot) {
           <Route path="/" element={<App />}>
             <Route index element={<Menu />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/cart-empty" element={<EmptyCart />} />
+            <Route path="/cart-empty" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>

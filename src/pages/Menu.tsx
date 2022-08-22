@@ -1,29 +1,32 @@
 import React, {
-  useEffect,
-  useContext,
-  useRef,
   useCallback,
+  useContext,
+  useEffect,
+  useRef,
 } from 'react';
 import '../scss/app.scss';
-import qs from 'qs';
 import { useNavigate } from 'react-router';
 
-import Categories from '../components/Categories';
-import Sort, { sortList } from '../components/Sort';
-import Skeleton from '../components/ContentLoader';
-import PizzaBlock from '../components/PizzaBlock';
+import {
+  Categories,
+  DataFetchError,
+  Pagination,
+  PizzaBlock,
+  Skeleton,
+  Sort,
+} from '../components';
 import { HeaderContext } from '../Context';
-import { Pagination } from '../components/Pagination';
 import {
   setCategoryId,
   setCurrentPage,
   setFilters,
 } from '../redux/slices/filterSlice';
 import { getPitsaListThunk } from '../redux/thunk/getPitsaListThunk';
-import { DataFetchError } from '../components/DataFetchError';
 import { useAppDispatch, useAppSelector } from '../redux/store';
+import { SORTLIST } from '../constants';
+import qs from 'qs';
 
-function Menu() {
+export function Menu() {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
   const navigate = useNavigate();
@@ -71,7 +74,7 @@ function Menu() {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
 
-      const sort = sortList.find(
+      const sort = SORTLIST.find(
         (obj) => obj.sortProperty === params.sortType
       );
 
@@ -113,7 +116,7 @@ function Menu() {
         <div className="content__top">
           <Categories
             value={categoryId}
-            onClickСategory={onChangeCategory}
+            onClickCategory={onChangeCategory}
           />
           <Sort />
         </div>
@@ -134,5 +137,3 @@ function Menu() {
     </div>
   );
 }
-
-export default Menu;

@@ -2,14 +2,12 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import {
   addItem,
-  minusItem,
   clearItems,
-} from '../redux/slices/cartSlice';
-import { PlusSVG } from '../assets/svgs/PlusSVG';
-import { MinusSVG } from '../assets/svgs/MinusSVG';
-import { CrossSVG } from '../assets/svgs/CrossSVG';
+  minusItem,
+} from '../../redux/slices/cartSlice';
+import { CrossSVG, MinusSVG, PlusSVG } from '../../assets/svgs';
 
-const CartItem = ({
+export const CartItem = ({
   id,
   title,
   type,
@@ -18,19 +16,14 @@ const CartItem = ({
   count,
   imageUrl,
 }) => {
+  const pitsaCharacteristics = { id, size, type };
   const dispatch = useDispatch();
   const onClickPlus = () => {
-    dispatch(
-      addItem({
-        id,
-        size,
-        type,
-      })
-    );
+    dispatch(addItem(pitsaCharacteristics));
   };
 
   const onClickMinus = () => {
-    dispatch(minusItem({ id, size, type }));
+    dispatch(minusItem(pitsaCharacteristics));
   };
 
   const onClickClear = () => {
@@ -83,5 +76,3 @@ const CartItem = ({
     </div>
   );
 };
-
-export default CartItem;
