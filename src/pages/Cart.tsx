@@ -1,6 +1,6 @@
 import React from 'react';
 import { CartEmpty, CartItem } from '../components';
-import { clearItems } from '../redux/slices/cartSlice';
+import { clearCart } from '../redux/slices/cartSlice';
 import { BinSVG, CartSVG, LeftArrowSVG } from '../assets/svgs';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/store';
@@ -12,9 +12,9 @@ export function Cart() {
   const { items, totalPrice } = useAppSelector(
     (state) => state.cartSlice
   );
-  const onClickRemove = () => {
+  const onClickClear = () => {
     if (window.confirm(CLEAN_CART_MESSAGE)) {
-      dispatch(clearItems());
+      dispatch(clearCart());
     }
   };
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
@@ -32,7 +32,7 @@ export function Cart() {
               <CartSVG />
               <h2 className="content__title">Корзина</h2>
             </div>
-            <div onClick={onClickRemove} className="cart__clear">
+            <div onClick={onClickClear} className="cart__clear">
               <BinSVG />
               <span>Очистить корзину</span>
             </div>
@@ -44,6 +44,8 @@ export function Cart() {
                 size={item.size}
                 key={item.id + item.type + item.size}
                 id={item.id}
+                category={item.category}
+                rating={item.rating}
                 title={item.title}
                 price={item.price}
                 count={item.count}

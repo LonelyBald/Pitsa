@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { instance } from '../../axios';
 
-export interface PitsaListThunkTypes {
+interface PitsaListThunkTypes {
   currentPage: number;
   category: string;
   sortBy: string;

@@ -73,11 +73,9 @@ export function Menu() {
   useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
-
       const sort = SORTLIST.find(
         (obj) => obj.sortProperty === params.sortType
       );
-
       dispatch(
         setFilters({
           ...params,
@@ -86,7 +84,7 @@ export function Menu() {
       );
       isSearch.current = true;
     }
-  }, [dispatch, fetchPizzas, navigate]);
+  }, [dispatch, navigate]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -109,7 +107,6 @@ export function Menu() {
     }
     isMounted.current = true;
   }, [categoryId, sortType, searchValue, currentPage, navigate]);
-
   return (
     <div className="content">
       <div className="container">
@@ -131,7 +128,6 @@ export function Menu() {
         </div>
         <Pagination
           onChangePage={(id: number) => dispatch(setCurrentPage(id))}
-          totalPageCount={pizzas.length / 5}
         />
       </div>
     </div>

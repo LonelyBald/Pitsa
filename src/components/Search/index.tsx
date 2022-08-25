@@ -1,25 +1,36 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, {
+  ChangeEvent,
+  useContext,
+  useRef,
+  useState,
+} from 'react';
 import debounce from 'lodash.debounce';
-import { HeaderContext } from '../../Context';
 import styles from './Search.module.scss';
 import { InputCrossSVG, SearchSVG } from '../../assets/svgs';
+import { HeaderContext } from '../../Context';
 
 export const Search = () => {
   const [inputValue, setInputValue] = useState('');
   const { setSearchValue } = useContext(HeaderContext);
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const onClickClear = () => {
-    setSearchValue('');
+    if (setSearchValue) {
+      setSearchValue('');
+    }
     setInputValue('');
-    inputRef.current.focus();
+    if (inputRef.current) {
+      inputRef.current?.focus();
+    }
   };
 
   const updateSearchValue = debounce((value) => {
-    setSearchValue(value);
+    if (setSearchValue) {
+      setSearchValue(value);
+    }
   }, 1000);
 
-  const onChangeInput = (event) => {
+  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     updateSearchValue(event.target.value);
   };

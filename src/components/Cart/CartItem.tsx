@@ -1,11 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import {
   addItem,
-  clearItems,
   minusItem,
+  removeItem,
 } from '../../redux/slices/cartSlice';
 import { CrossSVG, MinusSVG, PlusSVG } from '../../assets/svgs';
+import { useAppDispatch } from '../../redux/store';
+import { CartItemType } from '../../types/cartItemType';
 
 export const CartItem = ({
   id,
@@ -15,21 +16,19 @@ export const CartItem = ({
   price,
   count,
   imageUrl,
-}) => {
+}: CartItemType) => {
   const pitsaCharacteristics = { id, size, type };
-  const dispatch = useDispatch();
-  const onClickPlus = () => {
+  const dispatch = useAppDispatch();
+  const handleAddItem = () => {
     dispatch(addItem(pitsaCharacteristics));
   };
 
-  const onClickMinus = () => {
+  const handleRemoveItem = () => {
     dispatch(minusItem(pitsaCharacteristics));
   };
 
-  const onClickClear = () => {
-    if (window.confirm('Вы хотити удалить весь товар?')) {
-      dispatch(clearItems(id));
-    }
+  const handleClearCart = () => {
+    dispatch(removeItem(pitsaCharacteristics));
   };
 
   return (
@@ -49,14 +48,14 @@ export const CartItem = ({
       </div>
       <div className="cart__item-count">
         <div
-          onClick={onClickMinus}
+          onClick={handleRemoveItem}
           className="button button--outline button--circle cart__item-count-minus"
         >
           <MinusSVG />
         </div>
         <b>{count}</b>
         <div
-          onClick={onClickPlus}
+          onClick={handleAddItem}
           className="button button--outline button--circle cart__item-count-plus"
         >
           <PlusSVG />
@@ -66,7 +65,7 @@ export const CartItem = ({
         </div>
         <div className="cart__item-remove">
           <div
-            onClick={onClickClear}
+            onClick={handleClearCart}
             className="button button--outline button--circle"
           >
             <CrossSVG />

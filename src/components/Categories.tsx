@@ -1,7 +1,15 @@
 import React from 'react';
 import { CATEGORIES } from '../constants';
 
-export function Categories({ value, onClickCategory }) {
+interface CategoriesPropType {
+  value: number;
+  onClickCategory: (id: number) => void;
+}
+
+export function Categories({
+  value,
+  onClickCategory,
+}: CategoriesPropType) {
   return (
     <div className="categories">
       <ul>
