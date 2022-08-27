@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 import '../scss/app.scss';
 import { useNavigate } from 'react-router';
+
 import {
   Categories,
   DataFetchError,
