@@ -7,9 +7,7 @@ import { useAppDispatch, useAppSelector } from '../redux/store';
 type HandleChangeCategoryType = (sortParams: {
   [key: string]: string;
 }) => void;
-interface MouseEventWithPathType extends MouseEvent {
-  path: Array<HTMLDivElement | null>;
-}
+
 export function Sort() {
   const dispatch = useAppDispatch();
   const sort = useAppSelector((state) => state.filterSlice.sort);
@@ -22,7 +20,7 @@ export function Sort() {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEventWithPathType) => {
+    const handleClickOutside = (event: any) => {
       if (!event.path.includes(sortRef.current)) {
         setOpen(false);
       }

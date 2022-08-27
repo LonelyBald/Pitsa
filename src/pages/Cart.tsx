@@ -26,11 +26,10 @@ export function Cart() {
     <div className="content">
       <div className="container container--cart">
         <div className="cart">
-          {/*TODO: refactor content title style*/}
           <div className="cart__top">
             <div className="content__title">
               <CartSVG />
-              <h2 className="content__title">Корзина</h2>
+              <h2>Корзина</h2>
             </div>
             <div onClick={onClickClear} className="cart__clear">
               <BinSVG />
