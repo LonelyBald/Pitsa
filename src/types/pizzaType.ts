@@ -1,4 +1,4 @@
-export interface PitsaType {
+export interface PizzaType {
   id: number;
   imageUrl: string;
   title: string;

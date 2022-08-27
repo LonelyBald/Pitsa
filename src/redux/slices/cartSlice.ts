@@ -15,12 +15,12 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action) {
-      const newPitsa = action.payload;
+      const newPizza = action.payload;
       const findItem = state.items.find(
         (obj) =>
-          obj.id === newPitsa.id &&
-          obj.size === newPitsa.size &&
-          obj.type === newPitsa.type
+          obj.id === newPizza.id &&
+          obj.size === newPizza.size &&
+          obj.type === newPizza.type
       );
 
       if (findItem) {
@@ -34,19 +34,19 @@ const cartSlice = createSlice({
     },
 
     minusItem(state, action) {
-      const deletePitsa = action.payload;
+      const deletePizza = action.payload;
       const findItem = state.items.find(
         (obj) =>
-          obj.id === deletePitsa.id &&
-          obj.size === deletePitsa.size &&
-          obj.type === deletePitsa.type
+          obj.id === deletePizza.id &&
+          obj.size === deletePizza.size &&
+          obj.type === deletePizza.type
       );
       if (findItem && findItem.count === 1) {
         state.items = state.items.filter(
           (obj) =>
-            obj.id !== deletePitsa.id ||
-            obj.size !== deletePitsa.size ||
-            obj.type !== deletePitsa.type
+            obj.id !== deletePizza.id ||
+            obj.size !== deletePizza.size ||
+            obj.type !== deletePizza.type
         );
       }
       if (findItem) {
@@ -58,12 +58,12 @@ const cartSlice = createSlice({
     },
 
     removeItem(state, action) {
-      const currentPitsa = action.payload;
+      const currentPizza = action.payload;
       state.items = state.items.filter(
         (obj) =>
-          obj.id !== currentPitsa.id ||
-          obj.size !== currentPitsa.size ||
-          obj.type !== currentPitsa.type
+          obj.id !== currentPizza.id ||
+          obj.size !== currentPizza.size ||
+          obj.type !== currentPizza.type
       );
       state.totalPrice = state.items.reduce((sum, obj) => {
         return obj.price * obj.count + sum;

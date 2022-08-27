@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { addItem } from '../redux/slices/cartSlice';
 import { useAppDispatch, useAppSelector } from '../redux/store';
-import { PitsaType } from '../types/pitsaType';
+import { PizzaType } from '../types/pizzaType';
 import { PlusSVG } from '../assets/svgs';
 
 const typeNames = ['тонкое', 'традиционное'];
@@ -13,7 +13,7 @@ export function PizzaBlock({
   imageUrl,
   sizes,
   types,
-}: PitsaType) {
+}: PizzaType) {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) =>
     state.cartSlice.items.filter((obj) => obj.id === id)
@@ -23,8 +23,8 @@ export function PizzaBlock({
 
   const addedCount = useMemo(() => {
     let totalCount = 0;
-    cartItems.forEach((pitsa) => {
-      totalCount += pitsa.count;
+    cartItems.forEach((pizza) => {
+      totalCount += pizza.count;
     });
     return totalCount;
   }, [cartItems]);

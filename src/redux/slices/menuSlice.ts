@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getPitsaListThunk } from '../thunk/getPitsaListThunk';
-import { PitsaType } from '../../types/pitsaType';
+import { getPizzaListThunk } from '../thunk/getPizzaListThunk';
+import { PizzaType } from '../../types/pizzaType';
 
 interface InitialStateTypes {
-  items: Array<PitsaType>;
+  items: Array<PizzaType>;
   isLoading: boolean;
   isError: boolean;
 }
@@ -18,15 +18,15 @@ const menuSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getPitsaListThunk.pending, (state) => {
+    builder.addCase(getPizzaListThunk.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(getPitsaListThunk.fulfilled, (state, action) => {
+    builder.addCase(getPizzaListThunk.fulfilled, (state, action) => {
       state.items = action.payload;
       state.isLoading = false;
       state.isError = false;
     });
-    builder.addCase(getPitsaListThunk.rejected, (state) => {
+    builder.addCase(getPizzaListThunk.rejected, (state) => {
       state.isError = true;
       state.isLoading = false;
     });

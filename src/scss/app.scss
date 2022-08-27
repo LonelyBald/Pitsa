@@ -128,10 +128,15 @@ body {
     align-items: center;
   }
 
+
   .content__title {
     display: flex;
     align-items: center;
-    font-size: 32px;
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+    }
 
     svg {
       position: relative;
@@ -338,7 +343,6 @@ body {
 
         span {
           color: darken($color: $gray-line, $amount: 20);
-          font-weight: 500;
           font-weight: 600;
         }
 

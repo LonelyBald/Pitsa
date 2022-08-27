@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { instance } from '../../axios';
 
-interface PitsaListThunkTypes {
+interface PizzaListThunkTypes {
   currentPage: number;
   category: string;
   sortBy: string;
@@ -9,15 +9,15 @@ interface PitsaListThunkTypes {
   search: string;
 }
 
-export const getPitsaListThunk = createAsyncThunk(
-  'menu/getPitsaList',
+export const getPizzaListThunk = createAsyncThunk(
+  'menu/getPizzaList',
   async ({
     currentPage = 0,
     category = '',
     sortBy = '',
     order = false,
     search = '',
-  }: PitsaListThunkTypes) => {
+  }: PizzaListThunkTypes) => {
     const response = await instance.get(
       `/pitsa/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
     );
