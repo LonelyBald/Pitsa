@@ -17,18 +17,18 @@ export const CartItem = ({
   count,
   imageUrl,
 }: CartItemType) => {
-  const pitsaCharacteristics = { id, size, type };
+  const pizzaCharacteristics = { id, size, type };
   const dispatch = useAppDispatch();
   const handleAddItem = () => {
-    dispatch(addItem(pitsaCharacteristics));
+    dispatch(addItem(pizzaCharacteristics));
   };
 
   const handleRemoveItem = () => {
-    dispatch(minusItem(pitsaCharacteristics));
+    dispatch(minusItem(pizzaCharacteristics));
   };
 
   const handleClearCart = () => {
-    dispatch(removeItem(pitsaCharacteristics));
+    dispatch(removeItem(pizzaCharacteristics));
   };
 
   return (

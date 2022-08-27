@@ -19,7 +19,7 @@ import {
   setCategoryId,
   setCurrentPage,
 } from '../redux/slices/filterSlice';
-import { getPitsaListThunk } from '../redux/thunk/getPitsaListThunk';
+import { getPizzaListThunk } from '../redux/thunk/getPizzaListThunk';
 import { useAppDispatch, useAppSelector } from '../redux/store';
 import qs from 'qs';
 import { useURLParams } from '../utils/useURLParams';
@@ -53,7 +53,7 @@ export function Menu() {
 
   const fetchPizzas = useCallback(() => {
     return dispatch(
-      getPitsaListThunk({
+      getPizzaListThunk({
         currentPage,
         category,
         sortBy,

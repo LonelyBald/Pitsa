@@ -6,15 +6,6 @@
       "dom.iterable",
       "esnext"
     ],
-    "include": [
-      "src/**/*"
-    ],
-    "exclude": [
-      "node_modules",
-      "src/assets",
-      "src/scss",
-      "src/**/*.module.scss"
-    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -28,5 +19,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx"
-  }
+  },
+  "include": [
+    "src/**/*"
+  ]
 }
