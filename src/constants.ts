@@ -1,14 +1,18 @@
 export const CATEGORIES = [
-  'Все',
-  'Мясные',
-  'Вегетарианские',
-  'Гриль',
-  'Острые',
-  'Закрытые',
+  'All',
+  'Meat',
+  'Vegetarian',
+  'Grill',
+  'Spicy',
+  'Unnavigable',
 ];
 
 export const SORTLIST = [
-  { name: 'популярности', sortProperty: 'rating' },
-  { name: 'цене', sortProperty: 'price' },
-  { name: 'алфавиту', sortProperty: 'title' },
+  { name: 'Rating', sortProperty: 'rating' },
+  { name: 'Price', sortProperty: 'price' },
+  { name: 'Title', sortProperty: 'title' },
 ];
+
+export const SESSION_STORAGE_KEYS = {
+  PIZZA_ARR: 'PIZZA_ARR'
+}
