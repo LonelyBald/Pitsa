@@ -4,7 +4,7 @@ export const CATEGORIES = [
   'Vegetarian',
   'Grill',
   'Spicy',
-  'Unnavigable',
+  'Unavailable',
 ];
 
 export const SORTLIST = [
