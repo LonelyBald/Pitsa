@@ -53,29 +53,33 @@ export const CartItem = ({
           {type}, {size} cm.
         </p>
       </div>
-      <div className="cart__item-count">
-        <div
-          onClick={handleRemoveItem}
-          className="button button--outline button--circle cart__item-count-minus"
-        >
-          <MinusSVG />
-        </div>
-        <b>{count}</b>
-        <div
-          onClick={handleAddItem}
-          className="button button--outline button--circle cart__item-count-plus"
-        >
-          <PlusSVG />
-        </div>
-        <div className="cart__item-price">
-          <b>{price * count} $</b>
-        </div>
-        <div className="cart__item-remove">
+      <div className="cart__item-count-container">
+        <div className="cart__item-count">
           <div
-            onClick={handleClearCart}
-            className="button button--outline button--circle"
+            onClick={handleRemoveItem}
+            className="button button--outline button--circle cart__item-count-minus"
           >
-            <CrossSVG />
+            <MinusSVG />
+          </div>
+          <b>{count}</b>
+          <div
+            onClick={handleAddItem}
+            className="button button--outline button--circle cart__item-count-plus"
+          >
+            <PlusSVG />
+          </div>
+        </div>
+        <div className="cart__item-remove-container">
+          <div className="cart__item-price">
+            <b>{price * count} $</b>
+          </div>
+          <div className="cart__item-remove">
+            <div
+              onClick={handleClearCart}
+              className="button button--outline button--circle"
+            >
+              <CrossSVG />
+            </div>
           </div>
         </div>
       </div>

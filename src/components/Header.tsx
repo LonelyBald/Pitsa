@@ -19,7 +19,7 @@ export function Header() {
             <img width="38" src={PizzaLogo} alt="Pizza logo" />
             <div>
               <h1>React Pizza</h1>
-              <p>самая вкусная питса во вселенной</p>
+              <p>the best pizza here</p>
             </div>
           </div>
         </Link>
@@ -27,7 +27,7 @@ export function Header() {
         <div className="header__cart">
           <nav>
             <Link to="/cart" className="button button--cart">
-              <span>{totalPrice} ₸</span>
+              <span>{totalPrice} $</span>
               <div className="button__delimiter" />
               <div className="button--img">
                 <CartSVG />
