@@ -102,11 +102,11 @@ export function Menu() {
             : pizzas}
         </div>
         <div className="content__items">
-          {isError ? <DataFetchError /> : ''}
+          {isError && <DataFetchError />}
         </div>
-        <Pagination
-          onChangePage={(id: number) => dispatch(setCurrentPage(id))}
-        />
+        {!isError && <Pagination
+            onChangePage={(id: number) => dispatch(setCurrentPage(id))}
+        />}
       </div>
     </div>
   );
