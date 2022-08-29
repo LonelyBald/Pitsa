@@ -4,17 +4,20 @@ import { clearCart } from '../redux/slices/cartSlice';
 import { BinSVG, CartSVG, LeftArrowSVG } from '../assets/svgs';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/store';
+import {useSessionStorage} from "../utils/useSessionStorage";
 
-const CLEAN_CART_MESSAGE = 'Вы хотити очистить корзину?';
+const CLEAN_CART_MESSAGE = 'Do you want to clear cart?';
 
 export function Cart() {
   const dispatch = useAppDispatch();
   const { items, totalPrice } = useAppSelector(
     (state) => state.cartSlice
   );
+  const {clearPizzaSessionStorage} = useSessionStorage(items)
   const onClickClear = () => {
     if (window.confirm(CLEAN_CART_MESSAGE)) {
-      dispatch(clearCart());
+      dispatch(clearCart())
+      clearPizzaSessionStorage()
     }
   };
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
@@ -29,11 +32,11 @@ export function Cart() {
           <div className="cart__top">
             <div className="content__title">
               <CartSVG />
-              <h2>Корзина</h2>
+              <h2>Cart</h2>
             </div>
             <div onClick={onClickClear} className="cart__clear">
               <BinSVG />
-              <span>Очистить корзину</span>
+              <span>Clear cart</span>
             </div>
           </div>
           <div className="content__items">
@@ -54,10 +57,10 @@ export function Cart() {
             <div className="cart__bottom">
               <div className="cart__bottom-details">
                 <span>
-                  Всего пицц: <b>{totalCount} шт.</b>
+                  Total pizzas: <b>{totalCount} pcs.</b>
                 </span>
                 <span>
-                  Сумма заказа: <b>{totalPrice} ₸</b>
+                  Order price: <b>{totalPrice} $</b>
                 </span>
               </div>
               <div className="cart__bottom-buttons">
@@ -66,10 +69,10 @@ export function Cart() {
                   className="button button--outline button--add go-back-btn"
                 >
                   <LeftArrowSVG />
-                  <span>Вернуться назад</span>
+                  <span>Back</span>
                 </Link>
                 <div className="button pay-btn">
-                  <span>Оплатить сейчас</span>
+                  <span>Pay now</span>
                 </div>
               </div>
             </div>

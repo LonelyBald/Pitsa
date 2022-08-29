@@ -5,8 +5,9 @@ import {
   removeItem,
 } from '../../redux/slices/cartSlice';
 import { CrossSVG, MinusSVG, PlusSVG } from '../../assets/svgs';
-import { useAppDispatch } from '../../redux/store';
+import {useAppDispatch, useAppSelector} from '../../redux/store';
 import { CartItemType } from '../../types/cartItemType';
+import {useSessionStorage} from "../../utils/useSessionStorage";
 
 export const CartItem = ({
   id,
@@ -19,16 +20,22 @@ export const CartItem = ({
 }: CartItemType) => {
   const pizzaCharacteristics = { id, size, type };
   const dispatch = useAppDispatch();
+  const { items } = useAppSelector(
+      (state) => state.cartSlice
+  );
+  const {clearPizzaSessionStorage} = useSessionStorage(items)
   const handleAddItem = () => {
     dispatch(addItem(pizzaCharacteristics));
   };
 
   const handleRemoveItem = () => {
     dispatch(minusItem(pizzaCharacteristics));
+    clearPizzaSessionStorage()
   };
 
   const handleClearCart = () => {
     dispatch(removeItem(pizzaCharacteristics));
+    clearPizzaSessionStorage()
   };
 
   return (
@@ -43,7 +50,7 @@ export const CartItem = ({
       <div className="cart__item-info">
         <h3>{title}</h3>
         <p>
-          {type}, {size} см.
+          {type}, {size} cm.
         </p>
       </div>
       <div className="cart__item-count">
@@ -61,7 +68,7 @@ export const CartItem = ({
           <PlusSVG />
         </div>
         <div className="cart__item-price">
-          <b>{price * count} ₸</b>
+          <b>{price * count} $</b>
         </div>
         <div className="cart__item-remove">
           <div
