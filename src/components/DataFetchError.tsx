@@ -5,11 +5,11 @@ export const DataFetchError = () => {
   return (
     <>
       <div className="cart cart--empty">
-        <h2>Ошибка получения данных</h2>
+        <h2>Data fetch error</h2>
         <p>
-          Сайт временно не работает
+          Site is temporarily down
           <br />
-          Ведутся работы на сервере
+          Work in progress on the server
         </p>
         <img src={pictureTom} alt="Data Fetch Error" />
       </div>

@@ -42,7 +42,7 @@ export const Search = () => {
         value={inputValue}
         onChange={onChangeInput}
         className={styles.input}
-        placeholder="Поиск пиццы..."
+        placeholder="Search pizza..."
       />
       <SearchSVG className={styles.icon} />
       {inputValue && (

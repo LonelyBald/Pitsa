@@ -95,7 +95,7 @@ export function Menu() {
           />
           <Sort />
         </div>
-        <h2 className="content__title">Все питсы</h2>
+        <h2 className="content__title">All pizzas</h2>
         <div className="content__items">
           {isLoading
             ? skeletons.map((_, index) => <Skeleton key={index} />)

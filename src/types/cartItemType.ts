@@ -2,7 +2,7 @@ export interface CartItemType {
   id: number;
   imageUrl: string;
   title: string;
-  type: 'тонкое' | 'традиционное';
+  type: 'Thin' | 'Traditional';
   size: number;
   price: number;
   category: number;

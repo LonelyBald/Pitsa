@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../redux/store';
 import { PizzaType } from '../types/pizzaType';
 import { PlusSVG } from '../assets/svgs';
 
-const typeNames = ['тонкое', 'традиционное'];
+const typeNames = ['Thin', 'Traditional'];
 
 export function PizzaBlock({
   id,
@@ -69,19 +69,19 @@ export function PizzaBlock({
               className={activeSize === index ? 'active' : ''}
               key={size}
             >
-              {size} см.
+              {size} cm.
             </li>
           ))}
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">от {price} ₸</div>
+        <div className="pizza-block__price">from {price} $</div>
         <button
           className="button button--outline button--add"
           onClick={onClickAdd}
         >
           <PlusSVG />
-          <span>Добавить</span>
+          <span>Add</span>
           {addedCount > 0 && <i>{addedCount}</i>}
         </button>
       </div>
