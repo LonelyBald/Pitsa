@@ -24,6 +24,7 @@ import { getPizzaListThunk } from '../redux/thunk/getPizzaListThunk';
 import { useAppDispatch, useAppSelector } from '../redux/store';
 import qs from 'qs';
 import { useURLParams } from '../utils/useURLParams';
+import {useSessionStorage} from "../utils/useSessionStorage";
 
 export function Menu() {
   const isSearch = useRef(false);
@@ -33,14 +34,16 @@ export function Menu() {
   const { sortType, category, sortBy, order, search } = useURLParams({
     isSearch,
   });
-
+  const { items: cartItems } = useAppSelector(
+      (state) => state.cartSlice
+  );
   const { categoryId, currentPage } = useAppSelector(
     (state) => state.filterSlice
   );
   const { items, isLoading, isError } = useAppSelector(
     (state) => state.menuSlice
   );
-
+  useSessionStorage(cartItems)
   const { searchValue } = useContext(HeaderContext);
 
   const pizzas = items.map((obj) => (

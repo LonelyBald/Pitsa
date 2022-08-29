@@ -4,6 +4,7 @@ import { clearCart } from '../redux/slices/cartSlice';
 import { BinSVG, CartSVG, LeftArrowSVG } from '../assets/svgs';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/store';
+import {useSessionStorage} from "../utils/useSessionStorage";
 
 const CLEAN_CART_MESSAGE = 'Do you want to clear cart?';
 
@@ -12,9 +13,11 @@ export function Cart() {
   const { items, totalPrice } = useAppSelector(
     (state) => state.cartSlice
   );
+  const {clearPizzaSessionStorage} = useSessionStorage(items)
   const onClickClear = () => {
     if (window.confirm(CLEAN_CART_MESSAGE)) {
-      dispatch(clearCart());
+      dispatch(clearCart())
+      clearPizzaSessionStorage()
     }
   };
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
