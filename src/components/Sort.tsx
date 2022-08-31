@@ -36,7 +36,7 @@ export function Sort() {
     <div ref={sortRef} className="sort">
       <div className="sort__label">
         <SortArrowSVG />
-        <b>Сортировка по:</b>
+        <b>Sort by:</b>
         <span onClick={() => setOpen(!open)}>{sort.name}</span>
       </div>
       {open && (
