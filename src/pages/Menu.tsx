@@ -24,7 +24,7 @@ import { getPizzaListThunk } from '../redux/thunk/getPizzaListThunk';
 import { useAppDispatch, useAppSelector } from '../redux/store';
 import qs from 'qs';
 import { useURLParams } from '../utils/useURLParams';
-import {useSessionStorage} from "../utils/useSessionStorage";
+import { useSessionStorage } from '../utils/useSessionStorage';
 
 export function Menu() {
   const isSearch = useRef(false);
@@ -35,7 +35,7 @@ export function Menu() {
     isSearch,
   });
   const { items: cartItems } = useAppSelector(
-      (state) => state.cartSlice
+    (state) => state.cartSlice
   );
   const { categoryId, currentPage } = useAppSelector(
     (state) => state.filterSlice
@@ -43,7 +43,7 @@ export function Menu() {
   const { items, isLoading, isError } = useAppSelector(
     (state) => state.menuSlice
   );
-  useSessionStorage(cartItems)
+  useSessionStorage(cartItems);
   const { searchValue } = useContext(HeaderContext);
 
   const pizzas = items.map((obj) => (
@@ -104,12 +104,14 @@ export function Menu() {
             ? skeletons.map((_, index) => <Skeleton key={index} />)
             : pizzas}
         </div>
-        <div className="content__items">
-          {isError && <DataFetchError />}
-        </div>
-        {!isError && <Pagination
-            onChangePage={(id: number) => dispatch(setCurrentPage(id))}
-        />}
+        <div>{isError && <DataFetchError />}</div>
+        {!isError && (
+          <Pagination
+            onChangePage={(id: number) =>
+              dispatch(setCurrentPage(id))
+            }
+          />
+        )}
       </div>
     </div>
   );
